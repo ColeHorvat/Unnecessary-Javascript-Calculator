@@ -4,23 +4,41 @@ import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
+//Scene
+
 const scene = new THREE.Scene();
 
+//Camera
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 100, 100000);
+camera.position.setZ(1000);
+
+//Renderer
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#calc')
 });
 
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableDamping = true
-
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
 
-camera.position.setZ(1000);
-
 renderer.render(scene, camera);
+
+//Controls 
+
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.enableDamping = true
+controls.enablePan = false
+
+controls.mouseButtons = {
+  RIGHT: THREE.MOUSE.ROTATE,
+}
+
+
+
+
+
+//Calculator Loader
 
 const fbxLoader = new FBXLoader()
 fbxLoader.load(
@@ -45,12 +63,14 @@ fbxLoader.load(
     }
 )
 
+//Lighting
+
 const pointLight = new THREE.PointLight(0xffffff);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 
-pointLight.position.set(20,20,20);
+pointLight.position.set(0,0,1000);
 
-scene.add(ambientLight);
+scene.add(pointLight);
 
 function animate() {
   requestAnimationFrame(animate);
