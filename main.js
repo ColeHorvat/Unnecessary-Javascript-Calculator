@@ -3,6 +3,8 @@ import './style.css'
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { Text } from 'troika-three-text'
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module'
 
 //Scene
 
@@ -68,9 +70,36 @@ fbxLoader.load(
 const pointLight = new THREE.PointLight(0xffffff);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 
-pointLight.position.set(0,0,1000);
+pointLight.position.set(0,0,500);
 
-scene.add(pointLight);
+scene.add(pointLight, ambientLight);
+
+//Calculator text
+
+var calcText = new Text();
+
+calcText.text = "0";
+calcText.fontSize = 200;
+calcText.position.z = 49;
+calcText.position.x = 192;
+calcText.position.y = 490;
+calcText.color = 0xffffff;
+
+/*x: 192 y:490 */
+
+scene.add(calcText);
+calcText.sync();
+
+//GUI
+const gui = new GUI();
+const calcTextFolder = gui.addFolder('Calculator Text');
+calcTextFolder.add(calcText.position, 'x', 0, 1000);
+calcTextFolder.add(calcText.position, 'y', 0, 1000);
+calcTextFolder.add(calcText.position, 'z', 0, 100);
+calcTextFolder.open();
+
+
+//Animation
 
 function animate() {
   requestAnimationFrame(animate);
