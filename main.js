@@ -94,7 +94,7 @@ calcText.font = "Fonts/digital-7.ttf"
 /*x: 192 y:457 */
 
 scene.add(calcText);
-calcText.sync();
+
 
 //GUI
 const gui = new GUI();
@@ -111,6 +111,8 @@ function animate() {
   requestAnimationFrame(animate);
 
   controls.update();
+  calcText.text = "0+200";
+  calcText.sync();
 
   renderer.render(scene, camera);
 }
