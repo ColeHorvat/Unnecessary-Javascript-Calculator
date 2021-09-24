@@ -82,10 +82,13 @@ calcText.text = "0";
 calcText.fontSize = 200;
 calcText.position.z = 49;
 calcText.position.x = 192;
-calcText.position.y = 490;
-calcText.color = 0xffffff;
+calcText.position.y = 457;
+calcText.color = 0x123B13;
+//calcText.clipRect = 'Bounds of calculator screen'
+//calcText.direction = 'left?'
+calcText.font = "Fonts/digital-7.ttf"
 
-/*x: 192 y:490 */
+/*x: 192 y:457 */
 
 scene.add(calcText);
 calcText.sync();
