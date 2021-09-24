@@ -78,14 +78,17 @@ scene.add(pointLight, ambientLight);
 
 var calcText = new Text();
 
+calcText.direction = "rtl"
+calcText.anchorX = "right"
 calcText.text = "0";
 calcText.fontSize = 200;
 calcText.position.z = 49;
-calcText.position.x = 192;
+calcText.position.x = 310;
 calcText.position.y = 457;
 calcText.color = 0x123B13;
+calcText.whiteSpace = "nowrap";
 //calcText.clipRect = 'Bounds of calculator screen'
-//calcText.direction = 'left?'
+
 calcText.font = "Fonts/digital-7.ttf"
 
 /*x: 192 y:457 */
@@ -96,7 +99,7 @@ calcText.sync();
 //GUI
 const gui = new GUI();
 const calcTextFolder = gui.addFolder('Calculator Text');
-calcTextFolder.add(calcText.position, 'x', 0, 1000);
+calcTextFolder.add(calcText.position, 'x', -1000, 1000);
 calcTextFolder.add(calcText.position, 'y', 0, 1000);
 calcTextFolder.add(calcText.position, 'z', 0, 100);
 calcTextFolder.open();
